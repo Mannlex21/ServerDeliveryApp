@@ -1,25 +1,25 @@
+import base64
+import math
+import os
 from app.models.model_user import User
-from fastapi import APIRouter
+import app.utils.util_file as UtilFile
+from fastapi import APIRouter, File, UploadFile
 import sqlite3
 router = APIRouter()
 
-# @router.get('/geShops')
-# async def get():
-#     conn = sqlite3.connect("database.db")
-#     cur = conn.execute("select*from Users")
-#     users = cur.fetchall()
-#     result_prueba = []
-#     for i in users:
-#         single_prueba = {}
-#         single_prueba["Id"] = i[0]
-#         single_prueba["Name"] = i[1]
-#         single_prueba["User"] = i[2]
-#         single_prueba["Email"] = i[3]
-#         single_prueba["Password"] = i[4]
-#         result_prueba.append(single_prueba)
-#     conn.commit()
-#     conn.close()
-#     return result_prueba
+
+@router.get('/getImg')
+async def getImg():
+    pathImage = os.path.realpath('./app/src/image')
+    path = os.path.realpath(pathImage + '/food.jpg')
+    if(os.path.exists(path)):
+        with open(path, 'rb') as f:
+            file = f.read()
+            encoded = base64.b64encode(file)
+            return {'file_name': os.path.basename(f.name), 'size': UtilFile.convert_size(f.seek(0, os.SEEK_END)), 'result': encoded}
+    else:
+        return {'error': 'file not found'}
+
 
 # @router.post('/createUser')
 # async def create_user(user: User):
