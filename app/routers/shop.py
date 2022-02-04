@@ -25,8 +25,8 @@ async def getImg():
 # async def create_user(user: User):
 #     print(user)
 #     conn = sqlite3.connect("database.db")
-#     query = "INSERT INTO Users (Name, User, Email, Password) VALUES ('{name}', '{user}', '{email}', '{password}')"
-#     conn.execute(query.format(name = user.name, user = user.user, password = user.password, email = user.email))
+#     query = "INSERT INTO Users (Name, Username, Email, Password) VALUES ('{name}', '{Username}', '{email}', '{password}')"
+#     conn.execute(query.format(name = user.name, Username = user.username, password = user.password, email = user.email))
 #     conn.commit()
 #     conn.close()
 

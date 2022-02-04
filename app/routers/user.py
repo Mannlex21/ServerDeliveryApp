@@ -28,8 +28,8 @@ async def get():
 async def create_user(user: User):
     print(user)
     conn = sqlite3.connect("database.db")
-    query = "INSERT INTO Users (Name, User, Email, Password) VALUES ('{name}', '{user}', '{email}', '{password}')"
-    conn.execute(query.format(name=user.name, user=user.user,
+    query = "INSERT INTO Users (Username, Email, Password) VALUES ('{username}', '{email}', '{password}')"
+    conn.execute(query.format(user=user.username,
                  password=user.password, email=user.email))
     conn.commit()
     conn.close()
@@ -39,9 +39,9 @@ async def create_user(user: User):
 async def update_user(user: User):
     print(user)
     conn = sqlite3.connect("database.db")
-    query = "UPDATE Users SET Name='{name}', User = '{user}', Email= '{email}', Password = '{password}' WHERE id='{id}'"
-    conn.execute(query.format(id=user.id, name=user.name,
-                 user=user.user, email=user.email, password=user.password))
+    query = "UPDATE Users SET User = '{user}', Email= '{email}', Password = '{password}' WHERE id='{id}'"
+    conn.execute(query.format(id=user.id,
+                 user=user.username, email=user.email, password=user.password))
     conn.commit()
     conn.close()
 
