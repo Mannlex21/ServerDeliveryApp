@@ -17,7 +17,6 @@ from app.db.auth import authenticate_user, get_current_user
 from PIL import Image
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from passlib.hash import bcrypt
 
 router = APIRouter()
 JWT_SECRET = 'myjwtsecret'
